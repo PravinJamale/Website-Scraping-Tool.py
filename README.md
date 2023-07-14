@@ -1,4 +1,4 @@
-# website data extraction tool using python.
+# website Scraping tool using python.
 
 Technology Stack:
 
