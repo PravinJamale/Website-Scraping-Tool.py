@@ -1,16 +1,5 @@
 # website data extraction tool using python.
 
-# The project automates the procss of collecting data from website.
-
-# It quickly extract large amounts of data which saves time and effort compared to manual extraction. 
-
-# It provide real-time information, allows us to stay updated with web changes.
-
-# We can use the Extracted  data for different purposes like Data Analysis, Marketing and promotion.
-
-# It can be used for Creating reports and analysis, also for Research and academic purposes
-
-
 Technology Stack:
 
 Programming Language: Python
