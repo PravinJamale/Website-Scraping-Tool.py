@@ -1,4 +1,3 @@
-
 # website data extraction tool using python.
 
 # The project automates the procss of collecting data from website.
