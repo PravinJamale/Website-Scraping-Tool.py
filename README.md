@@ -8,7 +8,8 @@
 
 # We can use the Extracted  data for different purposes like Data Analysis, Marketing and promotion.
 
-# It can be used for Creating reports and analysis, also for Research and academic purposes.
+# It can be used for Creating reports and analysis, also for Research and academic purposes
+
 
 Technology Stack:
 
@@ -38,16 +39,33 @@ c. Scraping Event Data:
       organizer email.
    
 
-d. Additional Information Extraction:
+d. Extracting Event Organizer Email:
 
-   1. The code interacts with a "Read More" button in each row to open a new tab for further information.
+   1. The code clicks on a "Read More" button in each row to open a new tab with more details.
    
-   2. In the new tab, it searches for the event organizer's email address, if available, and retrieves it.
+   2. In the new tab, it searches for an HTML element with the class "card-body" to locate the event organizer's email address.
    
-   3. The code switches back to the original window after extracting the required data.
+   3. If a email address is found, it extracts and stores it. If not, it assigns the value "N/A" to the variable. 
+   
+   
+e.  Switching Windows and Exception Handling:
 
-e. Data Storage and Presentation:
+   1. The code switches between the original window and the newly opened tab to perform necessary actions.
+   
+   2. Exception handling is implemented to handle scenarios where the email address is not found or elements are not present. 
+
+
+f. Data Storage and Presentation:
 
    1. The extracted data is then appended to separate lists for each field (event name, start date, etc.).
+
+
+g. Creating and Exporting DataFrame:
+
+   1. The lists containing event data are organized into a dictionary.
    
-   2. The lists are organized into a dictionary and used to create a Pandas DataFrame named "my_data2."
+   2. The dictionary is used to create a Pandas DataFrame named "my_data2".
+
+   3. The DataFrame is exported to a CSV file named "KNOW A FEST EVENTS LISTS WITH EVENT ORGANIZERS EMAIL.csv".
+   
+  
