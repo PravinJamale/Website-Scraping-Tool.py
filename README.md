@@ -21,13 +21,13 @@ Main Steps:
 
 a. Establishing Browser Connection:
 
-   1.The project uses Selenium's webdriver to establish a connection with the Chrome browser.
+   1. The project uses Selenium's webdriver to establish a connection with the Chrome browser.
    
-   2.The browser window is maximized to ensure optimal visibility.
+   2. The browser window is maximized to ensure optimal visibility.
 
 b. Navigating to the Website:
 
-   1.The code opens a target website (https://www.knowafest.com/explore/upcomingfests) to scrape event data.
+   1. The code opens a target website (https://www.knowafest.com/explore/upcomingfests) to scrape event data.
 
 c. Scraping Event Data:
 
