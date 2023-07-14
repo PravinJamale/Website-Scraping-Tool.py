@@ -4,8 +4,17 @@
 # In[1]:
 
 
-# website data extraction tool using python
-# We can use the Extracted  data for different purposes like Data Analysis, Marketing
+# website data extraction tool using python.
+
+# The project automates the procss of collecting data from website.
+
+# It quickly extract large amounts of data which saves time and effort compared to manual extraction. 
+
+# It provide real-time information, allows us to stay updated with web changes.
+
+# We can use the Extracted  data for different purposes like Data Analysis, Marketing and promotion.
+
+# It can be used for Creating reports and analysis, also for Research and academic purposes.
 
 
 # In[2]:
@@ -17,60 +26,40 @@
 # In[3]:
 
 
-# imports the time module in Python, allow to access various functions and classes related to timekeeping and delays.
-
 import time
-
-# imports the Options class from the selenium.webdriver.chrome.options module, which allows you to customize the behavior and settings of the Chrome browser when using Selenium.
-
 from selenium.webdriver.chrome.options import Options
-
-# imports the webdriver module from the selenium library, allow to automate web browsers.
-
 from selenium import webdriver
-
-# imports the By class from the selenium.webdriver.common.by module, which is used in Selenium to specify the locating mechanism for finding web elements on a webpage.
-
 from selenium.webdriver.common.by import By
-
-# imports the NoSuchElementException class from the selenium.common.exceptions module.
-
 from selenium.common.exceptions import NoSuchElementException
 
-# Create ChromeOptions object
-options = Options()
+# To Create a connection with browse
 
-# Create a connection with the browser
-browser = webdriver.Chrome(options=options)
+browser = webdriver.Chrome()
 
-# Maximize the browser window
+# To Maximize the browser window
 browser.maximize_window()
 
-# Open the website
+# For Opening the website
 browser.get("https://www.knowafest.com/explore/upcomingfests")
 
-# Access Table from website by ID  
+# Accessed Table from website by ID  
 
 table=browser.find_element(By.ID,"tablaDatos")
 
-# search the elements within the table
-# Access Table Body (tbody tag)
+# searching the elements within the table
+# TO Access Table Body (tbody tag)
 
 tbody = table.find_element(By.TAG_NAME,"tbody")
 
-# Accessing ALL table rows (tr tags) within table body (tbody tag) 
+# Accessed ALL table rows (tr tags) within table body (tbody tag) 
 
 tr_list= tbody.find_elements(By.TAG_NAME,"tr")
 
-# To Make DataFrame use pandas library
+# For Making DataFrame used pandas library
 
 import pandas as pd
 
 # Created Empty Lists for appending All Table Data Elements from All Table Rows except FIRST TABLE ROW
-
-# After printing my_data (pandas Dataframe) by using dictionary(result_dict) , get lists of value in rows, under each key which becomes a name of column
-
-# This line of code initializes multiple empty lists in a single line. Each list is assigned to a corresponding variable
 
 Event_Name_list = []
 Event_Start_Date_list = []
@@ -87,11 +76,7 @@ for tr in tr_list:
         continue
         
    
-    td_list = tr.find_elements(By.TAG_NAME, "td") # Extract Each table row -> ALL table data elements ; EXCEPT FIRST TABLE ROW 
-    
-    # We cannot use td_list of tbody because tbody is not iterate each table rows to extract individual table rows'(tr tag); all table body(td tag) elements 
-    
-    # After extracting ALL table data elements from ALL Table Rows within tbody; ALL table data elements, not supports INDEXING
+    td_list = tr.find_elements(By.TAG_NAME, "td") # Extracted Each table row -> ALL table data elements ; EXCEPT FIRST TABLE ROW 
     
     start_date = td_list[0].text
     event_name = td_list[1].text # Another way of fetching the element    
@@ -100,27 +85,32 @@ for tr in tr_list:
     browser.execute_script("arguments[0].scrollIntoView();", read_more_button)
     read_more_button.click()
 
-    # Switching to the newly opened tab
+    # Switched to the newly opened tab
     
     current_window = browser.current_window_handle
     browser.switch_to.window(browser.window_handles[1])
     time.sleep(5)
     
-    # It finds the email address of the event organizer by searching for an HTML element with the class "card-body" 
-    # If a matching email address is found, it assigns it to the variable "event_organiser_email". If no match is found, it assigns the value "N/A" to the variable.
-
+    
+    
     try:
         divclass = browser.find_element(By.XPATH, "//div[@class='card-body']")
         a_tags = divclass.find_elements(By.XPATH, "//a[@class='link link-secondary link-pointer']")
-
+             
+    # Above, It finds the email address of the event organizer by searching for an HTML element with the class "card-body" 
+    
+    
+    # If a matching email address is found, it assigns it to the variable "event_organiser_email". If no match is found, it assigns the value "N/A" to the variable.
+    
         for a_tag in a_tags:
             if a_tag.get_attribute("href").startswith("mailto:"):
                 event_organiser_email = a_tag.get_attribute("href").split(":")[1]
                 break
     except NoSuchElementException:
         event_organiser_email = "N/A"
-
-    # Switch back to the original window
+  
+   
+    # Switched back to the original window
     browser.close()
     browser.switch_to.window(current_window)
     time.sleep(5)
@@ -168,10 +158,3 @@ my_data2
 
 # Export the data to a csv file
 my_data2.to_csv("KNOW A FEST EVENTS LISTS WITH EVENT ORGANIZERS EMAIL.csv")
-
-
-# In[ ]:
-
-
-
-
